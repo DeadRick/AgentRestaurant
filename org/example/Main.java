@@ -6,6 +6,6 @@ public class Main {
     }
 
     int sum_numbers(int one, int second) {
-        return one + second;
+        return one + second + 2;
     }
 }
