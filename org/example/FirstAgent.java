@@ -3,13 +3,14 @@ package org.example;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.WakerBehaviour;
+import jade.lang.acl.ACLMessage;
 
 public class FirstAgent extends Agent {
     // Запрос на покупку.
     private String targetBuyer;
 
     // Список агентов-продавцов.
-    private AID[] sellerAgents = {new AID("Seller1", AID.ISLOCALNAME),
+    private AID[] sellerAgents = {new AID("SecondAgent", AID.ISLOCALNAME),
             new AID("Seller2", AID.ISLOCALNAME)};
 
     // Инициализация агента.
@@ -17,6 +18,15 @@ public class FirstAgent extends Agent {
         // Выводим в консоль имя агента.
         System.out.println("Hello! " + getAID().getName() + " is here!");
 
+        // Пробуем отправить сообщение.
+        //
+        ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
+        for (int i = 0; i < sellerAgents.length; ++i) {
+            cfp.addReceiver(sellerAgents[i]);
+        }
+
+        cfp.setContent(targetBuyer);
+        send(cfp);
         // Получаем аргументы из консоли.
         // Аргументы задаются путём передачи через параметры.
         // Пример: FirstAgent:org.example.FirstAgent(MyBook)s
@@ -24,17 +34,7 @@ public class FirstAgent extends Agent {
         if (args != null && args.length > 0) {
             targetBuyer = (String) args[0];
             System.out.println("Trying to buy " + targetBuyer);
-
-            // Поведение агента. В нашем случае, WakerBehaviour выполняется единожды.
-            // Также есть TickerBehavior, он цикличен и выполняется раз в N тиков (задается в парметрах).
-            addBehaviour(new WakerBehaviour(this, 10000) {
-                @Override
-                protected void handleElapsedTimeout() {
-                    super.handleElapsedTimeout();
-                    System.out.println(getAID().getName() + " give a book to a client!");
-                    doDelete();
-                }
-            });
+//            addBehaviour(new RequestPerfomer());
         } else {
             System.out.println("No book title specified");
             doDelete();
