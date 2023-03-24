@@ -3,7 +3,7 @@ package org.example;
 import jade.core.AID;
 import jade.core.Agent;
 
-public class FirstAgent extends Agent {
+public class SecondAgent extends Agent{
     // Запрос на покупку.
     private String targetBuyer;
 
@@ -11,7 +11,6 @@ public class FirstAgent extends Agent {
     private AID[] sellerAgents = {new AID("Seller1", AID.ISLOCALNAME),
             new AID("Seller2", AID.ISLOCALNAME)};
 
-    // Инициализация агента.
     protected void setup() {
         // Выводим в консоль имя агента.
         System.out.println("Hello! " + getAID().getName() + " is here!");
@@ -22,7 +21,7 @@ public class FirstAgent extends Agent {
         Object[] args = getArguments();
         if (args != null && args.length > 0) {
             targetBuyer = (String) args[0];
-            System.out.println("Trying to buy " + targetBuyer);
+            System.out.println(getAID().getName() + "trying to buy " + targetBuyer);
         }
         else {
             System.out.println("No book title specified");
@@ -30,7 +29,6 @@ public class FirstAgent extends Agent {
         }
     }
 
-    // Убийство агента.
     protected void takeDown() {
         if (targetBuyer != null && targetBuyer.length() > 0) {
             System.out.println("Buyer-agent " + getAID().getName() + " died, he bought " + targetBuyer + "book.");
@@ -38,5 +36,4 @@ public class FirstAgent extends Agent {
             System.out.println("Buyer-agent " + getAID().getName() + " terminating.");
         }
     }
-
 }

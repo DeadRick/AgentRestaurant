@@ -1,1 +1,1 @@
--gui FirstAgent:org.example.FirstAgent
+-gui FirstAgent:org.example.FirstAgent(The-Shining);SecondAgent:org.example.SecondAgent;
