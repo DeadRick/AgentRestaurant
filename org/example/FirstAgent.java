@@ -2,6 +2,7 @@ package org.example;
 
 import jade.core.AID;
 import jade.core.Agent;
+import jade.core.behaviours.WakerBehaviour;
 
 public class FirstAgent extends Agent {
     // Запрос на покупку.
@@ -23,8 +24,18 @@ public class FirstAgent extends Agent {
         if (args != null && args.length > 0) {
             targetBuyer = (String) args[0];
             System.out.println("Trying to buy " + targetBuyer);
-        }
-        else {
+
+            // Поведение агента. В нашем случае, WakerBehaviour выполняется единожды.
+            // Также есть TickerBehavior, он цикличен и выполняется раз в N тиков (задается в парметрах).
+            addBehaviour(new WakerBehaviour(this, 10000) {
+                @Override
+                protected void handleElapsedTimeout() {
+                    super.handleElapsedTimeout();
+                    System.out.println(getAID().getName() + " give a book to a client!");
+                    doDelete();
+                }
+            });
+        } else {
             System.out.println("No book title specified");
             doDelete();
         }
@@ -33,7 +44,7 @@ public class FirstAgent extends Agent {
     // Убийство агента.
     protected void takeDown() {
         if (targetBuyer != null && targetBuyer.length() > 0) {
-            System.out.println("Buyer-agent " + getAID().getName() + " died, he bought " + targetBuyer + "book.");
+            System.out.println("Buyer-agent " + getAID().getName() + " died. The target " + targetBuyer + " was succesfully done.");
         } else {
             System.out.println("Buyer-agent " + getAID().getName() + " terminating.");
         }
