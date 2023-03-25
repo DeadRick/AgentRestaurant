@@ -1,1 +1,1 @@
--gui FirstAgent:org.example.FirstAgent(The-Shining);SecondAgent:org.example.SecondAgent;
+-gui BookBuyer:examples.bookTrading.BookBuyerAgent(BBB);BookSeller:examples.bookTrading.BookSellerAgent(Aaa);BookGui:examples.bookTrading.BookSellerGui
