@@ -10,6 +10,8 @@ import jade.domain.FIPAException;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
+import org.example.JSONClasses.VisitorsGroup;
+import org.example.JSONClasses.VisitorsOrder;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,19 +24,15 @@ public class SupervisorAgent extends Agent {
     protected void generateVisitors() throws IOException {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            BufferedReader reader = new BufferedReader(new FileReader("file.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/visitors.json"));
             String json = "";
             String line;
             while ((line = reader.readLine()) != null) {
                 json += line;
             }
 
-            // Преобразуем строку JSON в объект Java
-//        MyObject myObject = objectMapper.readValue(json, MyObject.class);
-
-            // Используем объект Java
-//        System.out.println(myObject.toString());
-
+            VisitorsGroup visitors = objectMapper.readValue(json, VisitorsGroup.class);
+            System.out.println(visitors.getVisitorsOrders()[0].getVisName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,6 +57,7 @@ public class SupervisorAgent extends Agent {
 
         try {
             DFService.register(this, dfd);
+            generateVisitors();
             AgentContainer container = getContainerController(); // get the container controller for the current agent
             AgentController newAgent = container.createNewAgent("Visitor", "org.example.VisitorAgent", null); // create a new agent with the specified name and class
             newAgent.start(); // start the new agent
@@ -66,6 +65,8 @@ public class SupervisorAgent extends Agent {
         } catch (FIPAException e) {
             e.printStackTrace(); // #TODO Log4j
         } catch (StaleProxyException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
