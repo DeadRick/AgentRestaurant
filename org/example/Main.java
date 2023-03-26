@@ -7,7 +7,7 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void runProgram() {
         Runtime rt = Runtime.instance();
         Profile p = new ProfileImpl();
         // Имя контейнера и открытие GUI
@@ -23,7 +23,10 @@ public class Main {
             agent2.start();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // #TODO Log4J
         }
+    }
+    public static void main(String[] args) {
+        runProgram();
     }
 }
