@@ -3,12 +3,12 @@
 package org.example.JSONClasses;
 
 public class OperationType {
-    private long operTypeID;
-    private String operTypeName;
+    private long oper_type_id;
+    private String oper_type_name;
 
-    public long getOperTypeID() { return operTypeID; }
-    public void setOperTypeID(long value) { this.operTypeID = value; }
+    public long getOper_type_id() { return oper_type_id; }
+    public void setOper_type_id(long value) { this.oper_type_id = value; }
 
-    public String getOperTypeName() { return operTypeName; }
-    public void setOperTypeName(String value) { this.operTypeName = value; }
+    public String getOper_type_name() { return oper_type_name; }
+    public void setOper_type_name(String value) { this.oper_type_name = value; }
 }

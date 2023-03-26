@@ -3,20 +3,20 @@
 package org.example.JSONClasses;
 
 public class MenuDish {
-    private long menuDishID;
-    private long menuDishCard;
-    private long menuDishPrice;
-    private boolean menuDishActive;
+    private long menu_dish_id;
+    private long menu_dish_card;
+    private long menu_dish_price;
+    private boolean menu_dish_active;
 
-    public long getMenuDishID() { return menuDishID; }
-    public void setMenuDishID(long value) { this.menuDishID = value; }
+    public long getMenu_dish_id() { return menu_dish_id; }
+    public void setMenu_dish_id(long value) { this.menu_dish_id = value; }
 
-    public long getMenuDishCard() { return menuDishCard; }
-    public void setMenuDishCard(long value) { this.menuDishCard = value; }
+    public long getMenu_dish_card() { return menu_dish_card; }
+    public void setMenu_dish_card(long value) { this.menu_dish_card = value; }
 
-    public long getMenuDishPrice() { return menuDishPrice; }
-    public void setMenuDishPrice(long value) { this.menuDishPrice = value; }
+    public long getMenu_dish_price() { return menu_dish_price; }
+    public void setMenu_dish_price(long value) { this.menu_dish_price = value; }
 
-    public boolean getMenuDishActive() { return menuDishActive; }
-    public void setMenuDishActive(boolean value) { this.menuDishActive = value; }
+    public boolean getMenu_dish_active() { return menu_dish_active; }
+    public void setMenu_dish_active(boolean value) { this.menu_dish_active = value; }
 }

@@ -3,8 +3,8 @@
 package org.example.JSONClasses;
 
 public class ProcOperation {
-    private long procOper;
+    private long proc_oper;
 
-    public long getProcOper() { return procOper; }
-    public void setProcOper(long value) { this.procOper = value; }
+    public long getProc_oper() { return proc_oper; }
+    public void setProc_oper(long value) { this.proc_oper = value; }
 }

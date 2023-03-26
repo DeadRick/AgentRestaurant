@@ -3,12 +3,12 @@
 package org.example.JSONClasses;
 
 public class EquipmentType {
-    private long equipTypeID;
-    private String equipTypeName;
+    private long equip_type_id;
+    private String equip_type_name;
 
-    public long getEquipTypeID() { return equipTypeID; }
-    public void setEquipTypeID(long value) { this.equipTypeID = value; }
+    public long getEquip_type_id() { return equip_type_id; }
+    public void setEquip_type_id(long value) { this.equip_type_id = value; }
 
-    public String getEquipTypeName() { return equipTypeName; }
-    public void setEquipTypeName(String value) { this.equipTypeName = value; }
+    public String getEquip_type_name() { return equip_type_name; }
+    public void setEquip_type_name(String value) { this.equip_type_name = value; }
 }

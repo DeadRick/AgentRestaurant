@@ -3,16 +3,16 @@
 package org.example.JSONClasses;
 
 public class Cooker {
-    private long cookID;
-    private String cookName;
-    private boolean cookActive;
+    private long cook_id;
+    private String cook_name;
+    private boolean cook_active;
 
-    public long getCookID() { return cookID; }
-    public void setCookID(long value) { this.cookID = value; }
+    public long getCook_id() { return cook_id; }
+    public void setCook_id(long value) { this.cook_id = value; }
 
-    public String getCookName() { return cookName; }
-    public void setCookName(String value) { this.cookName = value; }
+    public String getCook_name() { return cook_name; }
+    public void setCook_name(String value) { this.cook_name = value; }
 
-    public boolean getCookActive() { return cookActive; }
-    public void setCookActive(boolean value) { this.cookActive = value; }
+    public boolean getCook_active() { return cook_active; }
+    public void setCook_active(boolean value) { this.cook_active = value; }
 }

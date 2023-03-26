@@ -3,16 +3,16 @@
 package org.example.JSONClasses;
 
 public class ProductType {
-    private long prodTypeID;
-    private String prodTypeName;
-    private boolean prodIsFood;
+    private long prod_type_id;
+    private String prod_type_name;
+    private boolean prod_is_food;
 
-    public long getProdTypeID() { return prodTypeID; }
-    public void setProdTypeID(long value) { this.prodTypeID = value; }
+    public long getProd_type_id() { return prod_type_id; }
+    public void setProd_type_id(long value) { this.prod_type_id = value; }
 
-    public String getProdTypeName() { return prodTypeName; }
-    public void setProdTypeName(String value) { this.prodTypeName = value; }
+    public String getProd_type_name() { return prod_type_name; }
+    public void setProd_type_name(String value) { this.prod_type_name = value; }
 
-    public boolean getProdIsFood() { return prodIsFood; }
-    public void setProdIsFood(boolean value) { this.prodIsFood = value; }
+    public boolean getProd_is_food() { return prod_is_food; }
+    public void setProd_is_food(boolean value) { this.prod_is_food = value; }
 }

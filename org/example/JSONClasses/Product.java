@@ -5,48 +5,48 @@ package org.example.JSONClasses;
 import java.time.OffsetDateTime;
 
 public class Product {
-    private Long productProdItemID;
-    private Long prodItemType;
-    private String prodItemName;
-    private String prodItemCompany;
-    private String prodItemUnit;
-    private double prodItemQuantity;
-    private double prodItemCost;
-    private OffsetDateTime prodItemDelivered;
-    private OffsetDateTime prodItemValidUntil;
-    private Long productProdItemType;
-    private Long prodItemID;
+    private Long product_prod_item_id;
+    private Long prod_item_type;
+    private String prod_item_name;
+    private String prod_item_company;
+    private String prod_item_unit;
+    private double prod_item_quantity;
+    private double prod_item_cost;
+    private OffsetDateTime prod_item_delivered;
+    private OffsetDateTime prod_item_valid_until;
+    private Long product_prod_item_type;
+    private Long prod_item_id;
 
-    public Long getProductProdItemID() { return productProdItemID; }
-    public void setProductProdItemID(Long value) { this.productProdItemID = value; }
+    public Long getProduct_prod_item_id() { return product_prod_item_id; }
+    public void setProduct_prod_item_id(Long value) { this.product_prod_item_id = value; }
 
-    public Long getProdItemType() { return prodItemType; }
-    public void setProdItemType(Long value) { this.prodItemType = value; }
+    public Long getProd_item_type() { return prod_item_type; }
+    public void setProd_item_type(Long value) { this.prod_item_type = value; }
 
-    public String getProdItemName() { return prodItemName; }
-    public void setProdItemName(String value) { this.prodItemName = value; }
+    public String getProd_item_name() { return prod_item_name; }
+    public void setProd_item_name(String value) { this.prod_item_name = value; }
 
-    public String getProdItemCompany() { return prodItemCompany; }
-    public void setProdItemCompany(String value) { this.prodItemCompany = value; }
+    public String getProd_item_company() { return prod_item_company; }
+    public void setProd_item_company(String value) { this.prod_item_company = value; }
 
-    public String getProdItemUnit() { return prodItemUnit; }
-    public void setProdItemUnit(String value) { this.prodItemUnit = value; }
+    public String getProd_item_unit() { return prod_item_unit; }
+    public void setProd_item_unit(String value) { this.prod_item_unit = value; }
 
-    public double getProdItemQuantity() { return prodItemQuantity; }
-    public void setProdItemQuantity(double value) { this.prodItemQuantity = value; }
+    public double getProdItemQuantity() { return prod_item_quantity; }
+    public void setProdItemQuantity(double value) { this.prod_item_quantity = value; }
 
-    public double getProdItemCost() { return prodItemCost; }
-    public void setProdItemCost(double value) { this.prodItemCost = value; }
+    public double getProd_item_cost() { return prod_item_cost; }
+    public void setProd_item_cost(double value) { this.prod_item_cost = value; }
 
-    public OffsetDateTime getProdItemDelivered() { return prodItemDelivered; }
-    public void setProdItemDelivered(OffsetDateTime value) { this.prodItemDelivered = value; }
+    public OffsetDateTime getProd_item_delivered() { return prod_item_delivered; }
+    public void setProd_item_delivered(OffsetDateTime value) { this.prod_item_delivered = value; }
 
-    public OffsetDateTime getProdItemValidUntil() { return prodItemValidUntil; }
-    public void setProdItemValidUntil(OffsetDateTime value) { this.prodItemValidUntil = value; }
+    public OffsetDateTime getProd_item_valid_until() { return prod_item_valid_until; }
+    public void setProd_item_valid_until(OffsetDateTime value) { this.prod_item_valid_until = value; }
 
-    public Long getProductProdItemType() { return productProdItemType; }
-    public void setProductProdItemType(Long value) { this.productProdItemType = value; }
+    public Long getProduct_prod_item_type() { return product_prod_item_type; }
+    public void setProduct_prod_item_type(Long value) { this.product_prod_item_type = value; }
 
-    public Long getProdItemID() { return prodItemID; }
-    public void setProdItemID(Long value) { this.prodItemID = value; }
+    public Long getProd_item_id() { return prod_item_id; }
+    public void setProd_item_id(Long value) { this.prod_item_id = value; }
 }

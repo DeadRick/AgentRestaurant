@@ -3,12 +3,12 @@
 package org.example.JSONClasses;
 
 public class OperProduct {
-    private long prodType;
-    private double prodQuantity;
+    private long prod_type;
+    private double prod_quantity;
 
-    public long getProdType() { return prodType; }
-    public void setProdType(long value) { this.prodType = value; }
+    public long getProd_type() { return prod_type; }
+    public void setProd_type(long value) { this.prod_type = value; }
 
-    public double getProdQuantity() { return prodQuantity; }
-    public void setProdQuantity(double value) { this.prodQuantity = value; }
+    public double getProd_quantity() { return prod_quantity; }
+    public void setProd_quantity(double value) { this.prod_quantity = value; }
 }
