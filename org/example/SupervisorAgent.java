@@ -58,9 +58,9 @@ public class SupervisorAgent extends Agent {
         try {
             DFService.register(this, dfd);
             generateVisitors();
-            AgentContainer container = getContainerController(); // get the container controller for the current agent
-            AgentController newAgent = container.createNewAgent("Visitor", "org.example.VisitorAgent", null); // create a new agent with the specified name and class
-            newAgent.start(); // start the new agent
+            AgentContainer container = getContainerController();
+            AgentController newAgent = container.createNewAgent("Visitor", "org.example.VisitorAgent", null);
+            newAgent.start();
 
         } catch (FIPAException e) {
             e.printStackTrace(); // #TODO Log4j
