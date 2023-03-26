@@ -16,10 +16,10 @@ public class Main {
         ContainerController cc = rt.createMainContainer(p);
 
         try {
-            AgentController agent1 = cc.createNewAgent("agent1", "org.example.VisitorAgent", null);
+            AgentController agent1 = cc.createNewAgent("Visitor", "org.example.VisitorAgent", null);
             agent1.start();
 
-            AgentController agent2 = cc.createNewAgent("agent2", "org.example.SupervisorAgent", null);
+            AgentController agent2 = cc.createNewAgent("Supervisor", "org.example.SupervisorAgent", null);
             agent2.start();
 
         } catch (Exception e) {
