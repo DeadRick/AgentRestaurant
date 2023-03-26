@@ -1,5 +1,6 @@
 package org.example;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
@@ -10,8 +11,13 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import org.example.JSONClasses.VisitorOrder;
+
+import java.io.File;
+import java.io.IOException;
 
 public class VisitorAgent extends Agent {
+
     // Запрос на покупку.
     private String targetBuyer;
 

@@ -25,22 +25,6 @@ public class SupervisorAgent extends Agent {
     private String targetBuyer;
 
 
-    // "src/main/resources/visitors.json"
-    protected void generateVisitors() throws IOException {
-        // Create an instance of ObjectMapper, which is used to read JSON data
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        // Read the JSON data from a file
-        File file = new File("src/main/resources/visitors.json");
-        VisitorOrder[] visitorOrders = objectMapper.readValue(file, VisitorOrder[].class);
-
-        // Print the data
-        for (VisitorOrder visitorOrder : visitorOrders) {
-            System.out.println("Visitor name: " + visitorOrder.getVis_name());
-            System.out.println();
-        }
-    }
-
     protected void setup() {
 
         // Выводим в консоль имя агента.
@@ -60,17 +44,12 @@ public class SupervisorAgent extends Agent {
 
         try {
             DFService.register(this, dfd);
-            generateVisitors();
-            AgentContainer container = getContainerController();
-            AgentController newAgent = container.createNewAgent("Visitor", "org.example.VisitorAgent", null);
-            newAgent.start();
+//            AgentContainer container = getContainerController();
+//            AgentController newAgent = container.createNewAgent("Visitor", "org.example.VisitorAgent", null);
+//            newAgent.start();
 
         } catch (FIPAException e) {
             e.printStackTrace(); // #TODO Log4j
-        } catch (StaleProxyException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
 
         // Получаем аргументы из консоли.

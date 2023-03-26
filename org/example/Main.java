@@ -1,16 +1,30 @@
 package org.example;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.core.Runtime;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
+import jade.wrapper.StaleProxyException;
+import org.example.JSONClasses.VisitorOrder;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Main {
-//    public static VisitorsOrder[] readJson() {
-//        VisitorsOrder[] visitorsOrder = new VisitorsOrder[];
-//        JSONArray a = (JSONArray) parser.parse(new FileReader("c:\\exer4-courses.json"));
-//    }
+    // "src/main/resources/visitors.json"
+    protected static void generateVisitors(ContainerController cc) throws IOException, StaleProxyException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        File file = new File("src/main/resources/visitors.json");
+        VisitorOrder[] visitorOrders = objectMapper.readValue(file, VisitorOrder[].class);
+
+        for (VisitorOrder visitorOrder : visitorOrders) {
+            AgentController agent = cc.createNewAgent(visitorOrder.getVis_name(), "org.example.VisitorAgent", null);
+            agent.start();
+        }
+    }
     public static void runProgram() {
         Runtime rt = Runtime.instance();
         Profile p = new ProfileImpl();
@@ -21,13 +35,13 @@ public class Main {
         try {
             AgentController agent2 = cc.createNewAgent("Supervisor", "org.example.SupervisorAgent", null);
             agent2.start();
-            AgentController agent1 = cc.createNewAgent("Visitor", "org.example.VisitorAgent", null);
-            agent1.start();
+            generateVisitors(cc);
 
         } catch (Exception e) {
             e.printStackTrace(); // #TODO Log4J
         }
     }
+
     public static void main(String[] args) {
         runProgram();
     }
