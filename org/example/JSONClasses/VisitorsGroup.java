@@ -1,8 +1,8 @@
 package org.example.JSONClasses;
 
 public class VisitorsGroup {
-    private VisitorsOrder[] visitorsOrders;
+    private VisitorOrder[] visitorsOrders;
 
-    public VisitorsOrder[] getVisitorsOrders() { return visitorsOrders; }
-    public void setVisitorsOrders(VisitorsOrder[] value) { this.visitorsOrders = value; }
+    public VisitorOrder[] getVisitorsOrders() { return visitorsOrders; }
+    public void setVisitorsOrders(VisitorOrder[] value) { this.visitorsOrders = value; }
 }

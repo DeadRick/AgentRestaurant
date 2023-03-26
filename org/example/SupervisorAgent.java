@@ -10,31 +10,34 @@ import jade.domain.FIPAException;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
+import org.example.JSONClasses.VisitorOrder;
 import org.example.JSONClasses.VisitorsGroup;
-import org.example.JSONClasses.VisitorsOrder;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+
 
 public class SupervisorAgent extends Agent {
     // Запрос на покупку.
     private String targetBuyer;
 
-    protected void generateVisitors() throws IOException {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/visitors.json"));
-            String json = "";
-            String line;
-            while ((line = reader.readLine()) != null) {
-                json += line;
-            }
 
-            VisitorsGroup visitors = objectMapper.readValue(json, VisitorsGroup.class);
-            System.out.println(visitors.getVisitorsOrders()[0].getVisName());
-        } catch (IOException e) {
-            e.printStackTrace();
+    // "src/main/resources/visitors.json"
+    protected void generateVisitors() throws IOException {
+        // Create an instance of ObjectMapper, which is used to read JSON data
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        // Read the JSON data from a file
+        File file = new File("src/main/resources/visitors.json");
+        VisitorOrder[] visitorOrders = objectMapper.readValue(file, VisitorOrder[].class);
+
+        // Print the data
+        for (VisitorOrder visitorOrder : visitorOrders) {
+            System.out.println("Visitor name: " + visitorOrder.getVis_name());
+            System.out.println();
         }
     }
 
