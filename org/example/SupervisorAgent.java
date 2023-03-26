@@ -1,39 +1,47 @@
 package org.example;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import jade.core.AID;
 import jade.core.Agent;
-import jade.core.behaviours.WakerBehaviour;
+import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
-import jade.wrapper.AgentContainer;
-import jade.wrapper.AgentController;
-import jade.wrapper.StaleProxyException;
-import org.example.JSONClasses.VisitorOrder;
-import org.example.JSONClasses.VisitorsGroup;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
+import jade.util.leap.Map;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 
 public class SupervisorAgent extends Agent {
     // Запрос на покупку.
     private String targetBuyer;
+    private HashMap<AID, List<String>> orderList;
 
+    private void updateOrderList(AID aid, String orderId) {
+        List<String> tempList = new ArrayList<>();
+        if (orderList.containsKey(aid)) {
+            tempList = orderList.get(aid);
+            tempList.add(orderId);
+            orderList.put(aid, tempList);
+        } else {
+            tempList.add(orderId);
+            orderList.put(aid, tempList);
+        }
+    }
 
+    private void callOrderAgent() {
+
+    }
     protected void setup() {
-
+        orderList = new HashMap<>();
         // Выводим в консоль имя агента.
-        System.out.println("Hello! " + getAID().getName() + " is here!");
-//        try {
-//            generateVisitors();
-//        } catch (IOException e) {
-//            System.out.println("Failed to read JSON-file."); // #TODO: Log4J
-//        }
+        System.out.println("<---" + getAID().getLocalName() + "--->\n" +
+                "ID: " + getAID().getName() + "\n<------>\n");
 
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
@@ -44,43 +52,38 @@ public class SupervisorAgent extends Agent {
 
         try {
             DFService.register(this, dfd);
-//            AgentContainer container = getContainerController();
-//            AgentController newAgent = container.createNewAgent("Visitor", "org.example.VisitorAgent", null);
-//            newAgent.start();
-
         } catch (FIPAException e) {
             e.printStackTrace(); // #TODO Log4j
         }
 
-        // Получаем аргументы из консоли.
-        // Аргументы задаются путём передачи через параметры.
-        // Пример: VisitorAgent:org.example.VisitorAgent(MyBook)
-//        Object[] args = getArguments();
-//        if (args != null && args.length > 0) {
-//            targetBuyer = (String) args[0];
-//            System.out.println(getAID().getName() + "trying to buy " + targetBuyer);
-//
-//            // Поведение агента. В нашем случае, WakerBehaviour выполняется единожды.
-//            // Также есть TickerBehavior, он цикличен и выполняется раз в N тиков (задается в парметрах).
-//            addBehaviour(new WakerBehaviour(this, 10000) {
-//                @Override
-//                protected void onWake() {
-//                    super.onWake();
-//                    System.out.println(getAID().getName() + " give a book to a client!");
-//                    doDelete();
-//                }
-//            });
-//        } else {
-//            System.out.println("No book title specified");
-//            doDelete();
-//        }
+        addBehaviour(new DishOrdersServer());
     }
 
     protected void takeDown() {
-        if (targetBuyer != null && targetBuyer.length() > 0) {
-            System.out.println("Buyer-agent " + getAID().getName() + " died, he bought " + targetBuyer + " book.");
-        } else {
-            System.out.println("Buyer-agent " + getAID().getName() + " terminating.");
+
+        System.out.println("Supervisor " + getAID().getName() + " died.");
+
+    }
+
+    private class DishOrdersServer extends CyclicBehaviour {
+
+        @Override
+        public void action() {
+            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.CFP);
+            ACLMessage msg = myAgent.receive(mt);
+            if (msg != null) {
+                String order = msg.getContent();
+                ACLMessage reply = msg.createReply();
+                reply.setPerformative(ACLMessage.PROPOSE);
+                reply.setContent("Your order is being processed!\n" +
+                        "I sent this message to " + msg.getSender().getLocalName() + ".");
+                System.out.println("!--- ORDER ---!\n" +
+                        " From: " + msg.getSender().getLocalName() + "\n" +
+                        " Order: " + order + "\n!-------------!\n");
+                myAgent.send(reply);
+            } else {
+                block();
+            }
         }
     }
 }
