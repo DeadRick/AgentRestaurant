@@ -44,7 +44,6 @@ public class Main {
         try {
             AgentController supervisor = cc.createNewAgent("Supervisor", "org.example.SupervisorAgent", null);
             supervisor.start();
-            AgentController orderAgent = cc.createNewAgent("OrderAgent", "org.example.OrderAgent", null);
             generateVisitors(cc);
         } catch (Exception e) {
             e.printStackTrace(); // #TODO Log4J
